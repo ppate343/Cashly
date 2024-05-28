@@ -1,9 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import csv
-import pandas as pd
-from datetime import datetime
-from openpyxl import Workbook
+
 
 # Function to scrape data from the license page
 def scrape_license_page(license_number):
@@ -13,34 +11,35 @@ def scrape_license_page(license_number):
     if response.status_code == 200:
         soup = BeautifulSoup(response.content, 'html.parser')
 
-        if (license_number != None):
 
         #add errorchecking for data (if does not exists, append empty string)
         # Extracting data from the html of the table
-            agent_name = soup.find("span", id="MainPlaceHolder_Content4_cragbkrname").text.strip()
-            license_number = soup.find("span", id="MainPlaceHolder_Content4_craglicence").text.strip()
-            brokerage_name = soup.find("span", id="MainPlaceHolder_Content4_crbkrgname").text.strip()
-            license_class = soup.find("span", id="MainPlaceHolder_Content4_crlicclass").text.strip()
-            status = soup.find("span", id="MainPlaceHolder_Content4_crstatus").text.strip()
-            issue_date_str = soup.find("span", id="MainPlaceHolder_Content4_crissuedate").text.strip()
-            expiry_date_str = soup.find("span", id="MainPlaceHolder_Content4_cragexpiry").text.strip()
 
-            print(expiry_date_str)
+        if (soup.find("span", id="MainPlaceHolder_Content4_cragbkrname") != None):
+
+            if(soup.find("span", id="MainPlaceHolder_Content4_crstatus").text.strip() != 'Expired'):
+
+                agent_name = soup.find("span", id="MainPlaceHolder_Content4_cragbkrname").text.strip()
+                license_number = soup.find("span", id="MainPlaceHolder_Content4_craglicence").text.strip()
+                brokerage_name = soup.find("span", id="MainPlaceHolder_Content4_crbkrgname").text.strip()
+                license_class = soup.find("span", id="MainPlaceHolder_Content4_crlicclass").text.strip()
+                status = soup.find("span", id="MainPlaceHolder_Content4_crstatus").text.strip()
+                issue_date_str = soup.find("span", id="MainPlaceHolder_Content4_crissuedate").text.strip()
+                expiry_date_str = soup.find("span", id="MainPlaceHolder_Content4_cragexpiry").text.strip()
+
+                print(agent_name + ' : ' , status )
         
-        # converting to date // not need
-        #issue_date = datetime.strptime(issue_date_str, "%B %d, %Y")
-        #expiry_date = datetime.strptime(expiry_date_str, "%B %d, %Y")
         
             # Returning the data
-            return {
-                "Agent Name": agent_name,
-                "License Number": license_number,
-                "Brokerage": brokerage_name,
-                "License Class": license_class,
-                "Status": status,
-                "Issue Date": issue_date_str,
-                "Expiry Date": expiry_date_str
-        }
+                return {
+                    "Agent Name": agent_name,
+                    "License Number": license_number,
+                    "Brokerage": brokerage_name,
+                    "License Class": license_class,
+                    "Status": status,
+                    "Issue Date": issue_date_str,
+                    "Expiry Date": expiry_date_str
+            }
     else:
         print(f"Failed to fetch data for license number {license_number}.")
         return None
@@ -54,10 +53,10 @@ def scrape_license_page(license_number):
 # Main function
 def main():
     # initial license # + back numbers to incremement
-    year = 'M24000'
+    year = 'M22000'
     num = '001'
    # initial_license_number = "M24000001"
-    entries = 300
+    entries = 500
     
 
     # ;ength of the numerical part of the license number
@@ -81,20 +80,10 @@ def main():
         
         #if there is data returned, append to list 
         if license_data:
-            #print(license_data)
-            # Check if license is valid
-            #if is_valid_license(license_data["Status"], license_data["Expiry Date"]):
-                # Append data to the list
-
             data_list.append(license_data)
         else:
             print(f"Skipping license number {new_license_number}.")
-    
-    # Create a DataFrame from the list
-    #df = pd.DataFrame(data_list)
-    
-    # Save the DataFrame to an Excel file
-    #df.to_excel("license_data.xlsx", index=False)
+
     
     #Creating csv file from list 
     with open('agents.csv', 'w', newline='', encoding='utf-8') as file:
