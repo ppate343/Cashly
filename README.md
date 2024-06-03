@@ -38,7 +38,7 @@ Before running any of the projects, ensure you have the following installed:
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/cashly.git
+    git clone https://github.com/ppate343/cashly.git
     ```
 
 2. **Install the required packages:**

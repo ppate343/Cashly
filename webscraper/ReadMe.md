@@ -22,8 +22,8 @@ Before running the scraper, ensure you have the following installed:
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/yourusername/mortgage-agent-webscraper.git
-    cd mortgage-agent-webscraper
+    git clone https://github.com/ppate343/cashly.git
+    cd webscraper
     ```
 
 2. **Install the required packages:**
@@ -36,7 +36,7 @@ Before running the scraper, ensure you have the following installed:
 
 1. **Run the scraper:**
     ```bash
-    python scraper.py
+    python fsco.py
     ```
 
 3. **Output:**
