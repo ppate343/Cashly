@@ -21,42 +21,6 @@ lender_name = 'extend'
 num = 13
 
 
-
-
-def private_lender(type):
-
-    if type=='first': 
-        recommendation = lender_name + num
-        #check first residential loan nums
-        return recommendation
-    elif type=='second':
-        #check second residential loan numbers 
-        recommendation= lender_name + num
-        return recommendation
-    elif type=='HELOC': 
-        #check HELOC loan numbers 
-        return recommendation
-        
-
-def commercial_lender(type): 
-
-    if type=='first': 
-        recommendation = lender_name + num
-        #check first residential loan nums
-        return recommendation
-    
-    elif type=='second':
-        #check second residential loan numbers 
-        recommendation= lender_name + num
-        return recommendation
-
-    elif type=='Construction': 
-        #check HELOC loan numbers 
-        return recommendation
-
-
-
-
 #call this function when they click the calculate button 
 def calculate(loan_type):
     match loan_type:
@@ -66,6 +30,42 @@ def calculate(loan_type):
         case 'commercial':
 
             return commercial_lender(commercial_type)
+        
+
+
+#function to calculate private lender suggestion 
+def private_lender(type): 
+    match type: 
+        case 'first': 
+            return 'recommendation'
+        case 'second': 
+            return 'recommendation'
+        case 'HELOC': 
+            return 'recommendation'
+
+        
+#function to calculate commercial lender suggestion 
+def commercial_lender(type): 
+    match type: 
+        case 'first': 
+            return 'recommendation'
+        case 'second': 
+            return 'recommendation'
+        case 'construction': 
+            return 'recommendation'
+        
+
+
+#function to filter for credit score then LTV
+
+
+def calculate(type, fico, ltv, area):
+    #check if commercial or private 
+    #check fico greater than or ltv greater than etc..
+    # area where?
+    #print results 
+    return 'lender name, interest rate, fee' 
+
 
                 
 
