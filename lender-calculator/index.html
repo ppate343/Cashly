@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mortgage Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    .large-button {
+      background-color: blue;
+      color: white;
+      padding: 20px;
+      font-size: 20px;
+      border: none;
+      cursor: pointer;
+    }
+    .large-button:hover {
+      background-color: darkblue;
+    }
+    .form-group {
+      margin: 15px 0;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input[type="number"], select {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>Welcome to Your Mortgage Calculator</h1>
+    <div class="buttons">
+      <button class="large-button" onclick="route('purchasing')">Purchasing</button>
+      <button class="large-button" onclick="showRefinancingForm()">Refinancing</button>
+      <button class="large-button" onclick="route('renewing')">Renewing</button>
+    </div>
+
+    <div id="refinancing-form" style="display: none;">
+      <h2>Refinancing Form</h2>
+      <div class="form-group">
+        <label for="refinanceType">Refinance Type</label>
+        <select id="refinanceType">
+          <option value="refinance1st">Refinance 1st</option>
+          <option value="refinance2nd">Refinance 2nd</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="mortgageAmount">Mortgage Amount</label>
+        <input type="number" id="mortgageAmount" />
+      </div>
+      <div class="form-group">
+        <label for="mortgageAmountNeeded">Mortgage Amount Needed</label>
+        <input type="number" id="mortgageAmountNeeded" />
+      </div>
+      <div class="form-group">
+        <label for="propertyValue">Property Value</label>
+        <input type="number" id="propertyValue" />
+      </div>
+      <div class="form-group">
+        <label for="creditScore">Credit Score</label>
+        <input type="number" id="creditScore" />
+      </div>
+      <div class="form-group">
+        <label for="monthlyHouseExpenses">Monthly House Expenses</label>
+        <input type="number" id="monthlyHouseExpenses" />
+        <button onclick="addExpense()">+</button>
+      </div>
+      <div id="total-expenses">
+        Total Monthly House Expenses: <span id="expenses-total">0</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

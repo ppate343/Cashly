@@ -53,10 +53,10 @@ def scrape_license_page(license_number):
 # Main function
 def main():
     # initial license # + back numbers to incremement
-    year = 'M22000'
+    year = 'M22001'
     num = '001'
    # initial_license_number = "M24000001"
-    entries = 500
+    entries = 200
     
 
     # ;ength of the numerical part of the license number
